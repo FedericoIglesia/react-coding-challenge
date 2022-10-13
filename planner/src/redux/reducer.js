@@ -1,20 +1,27 @@
-import { SEARCH_TALENT, GET_TALENT } from "./actions";
+import { SEARCH_TALENT, GET_TALENT, MOVE_CONTENT } from "./actions";
 import Swal from "sweetalert2";
 
 const initialState = {
   talent: [],
   talentCopy: [],
+  drawer: false,
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    // case GET_TALENT:
-    //   // console.log("Talent => " + state.talent);
-    //   return {
-    //     ...state,
-    //     talent: action.payload,
-    //     talentCopy: action.payload,
-    //   };
+    case GET_TALENT:
+      // console.log("Talent => " + state.talent);
+      return {
+        ...state,
+        talent: action.payload,
+        talentCopy: action.payload,
+      };
+
+    case MOVE_CONTENT:
+      return {
+        ...state,
+        drawer: action.payload,
+      };
 
     // case SEARCH_TALENT:
     //   let name = action.payload;

@@ -12,7 +12,6 @@ function SearchBar() {
 
   const getData = async () => {
     let response = await axios.get("planning.json");
-    console.log(response.data);
     setData(response.data);
   };
 
@@ -28,29 +27,31 @@ function SearchBar() {
     e.preventDefault(e);
     let talent = [];
 
-    if (name.length > 0) {
+    if (name.length == 0) {
+      Swal.fire({
+        icon: "error",
+        text: "Please enter a name or id",
+      });
+    } else {
       talent = data.filter((talent) =>
         talent.talentName.toLowerCase().includes(name.toLowerCase())
       );
       if (talent.length > 0) {
-        console.log(talent);
+        setName("");
         return talent;
       } else talent = data.filter((talent) => talent.id == name);
       if (talent.length > 0) {
-        console.log(talent);
+        setName("");
         return talent;
       } else {
+        setName("");
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: "sorry, we don't have any talent with that info :(",
         });
       }
-    } else
-      Swal.fire({
-        icon: "error",
-        text: "Please enter a name or id",
-      });
+    }
   }
   return (
     <form onSubmit={(e) => handleSubmit(e)}>

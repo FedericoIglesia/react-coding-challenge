@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 
 export const GET_TALENT = "GET_TALENT";
 export const SEARCH_TALENT = "SEARCH_TALENT";
+export const MOVE_CONTENT = "MOVE_CONTENT";
 
 export function getTalent() {
   return async function (dispatch) {
@@ -24,5 +25,12 @@ export function searchTalent(name) {
   return {
     type: SEARCH_TALENT,
     payload: name,
+  };
+}
+
+export function moveContent(boolean) {
+  return {
+    type: MOVE_CONTENT,
+    payload: boolean,
   };
 }

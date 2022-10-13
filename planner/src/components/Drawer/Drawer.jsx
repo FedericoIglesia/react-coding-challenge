@@ -7,11 +7,17 @@ import SearchBar from "../SearchBar/SearchBar";
 import Filter from "../Filters/Filter";
 import { IconContext } from "react-icons";
 import logo from "../../assets/favicon.ico";
+import { useDispatch } from "react-redux";
+import { moveContent } from "../../redux/actions";
 
 function Drawer() {
   const [sidebar, setSidebar] = useState(false);
+  const dispatch = useDispatch(false);
 
-  const showSideBar = () => setSidebar(!sidebar);
+  const showSideBar = () => {
+    setSidebar(!sidebar);
+    dispatch(moveContent(!sidebar));
+  };
   return (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>

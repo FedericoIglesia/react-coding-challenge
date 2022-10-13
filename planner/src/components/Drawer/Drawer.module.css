@@ -32,11 +32,12 @@ h6 {
   justify-content: center;
   position: fixed;
   transform: translateX(-100%);
-  transition: 0.8s;
+  transition: 0.3s;
 }
 
 .nav-menu-active {
   width: 15rem;
+  max-width: 15rem;
   transform: translateX(0);
   transition: all 0.3s;
 }
