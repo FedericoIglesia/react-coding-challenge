@@ -1,6 +1,6 @@
 *** Solution with React, plain CSS and redux for global states ***
 
-To see solution ==> npm start 
+To see solution ==> npm start on /planner path 
 
 
 
