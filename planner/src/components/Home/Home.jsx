@@ -29,22 +29,6 @@ function Home() {
 
   const industries = [...new Set(talent.map((i) => i.industry))];
 
-  // const [currentPage, setCurrentPage] = useState(1);
-  // // eslint-disable-next-line
-  // const [talentsPerPage, setTalentsPerPage] = useState(9);
-  // // eslint-disable-next-line
-  // // const [order, setOrder] = useState("");
-
-  // const indexOfLastTalent = currentPage * talentsPerPage;
-  // const indexOfFirstTalent = indexOfLastTalent - talentsPerPage;
-  // //getting the recipes from the global state by slicing the state array by the index. Since i'm slicing up to the 9th index(not included) i'm getting 9 recipes per page
-
-  // const currentTalent = talent.slice(indexOfFirstTalent, indexOfLastTalent);
-
-  // const pages = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  // };
-
   useEffect(() => {
     dispatch(getTalent());
   }, []);
