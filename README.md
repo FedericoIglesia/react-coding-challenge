@@ -1,3 +1,9 @@
+*** Solution with React, plain CSS and redux for global states ***
+
+To see solution ==> npm start 
+
+
+
 # React Coding Challenge
 
 At aspaara a squad of superheroes work on giving superpowers to planning teams.
