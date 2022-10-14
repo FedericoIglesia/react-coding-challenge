@@ -25,33 +25,15 @@ function SearchBar() {
 
   function handleSubmit(e) {
     e.preventDefault(e);
-    let talent = [];
 
     if (name.length == 0) {
       Swal.fire({
         icon: "error",
         text: "Please enter a name or id",
       });
-    } else {
-      talent = data.filter((talent) =>
-        talent.talentName.toLowerCase().includes(name.toLowerCase())
-      );
-      if (talent.length > 0) {
-        setName("");
-        return talent;
-      } else talent = data.filter((talent) => talent.id == name);
-      if (talent.length > 0) {
-        setName("");
-        return talent;
-      } else {
-        setName("");
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "sorry, we don't have any talent with that info :(",
-        });
-      }
     }
+    dispatch(searchTalent(name));
+    setName("");
   }
   return (
     <form onSubmit={(e) => handleSubmit(e)}>

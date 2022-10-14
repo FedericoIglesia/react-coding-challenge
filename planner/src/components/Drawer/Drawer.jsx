@@ -25,9 +25,8 @@ function Drawer() {
           <Link to="#" className={d["menu-bars"]}>
             <FaBars onClick={showSideBar} />
           </Link>
-          <Link to="/">
-            {" "}
-            <img src={logo} style={{ width: "1.5rem", marginLeft: "1rem" }} />
+          <Link to="/" style={{ marginLeft: "2.5rem", padding: 0 }}>
+            <img src={logo} style={{ width: "1.5rem" }} />
           </Link>
           <h4>Seeking Heroes</h4>
           <h6>planner</h6>

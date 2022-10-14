@@ -1,12 +1,65 @@
 .drawer-open {
-  transform: translateX(15rem);
+  transform: translateX(17rem);
   position: absolute;
   top: 3.5rem;
   max-width: 80%;
+  min-width: 75%;
+  height: 80vh;
   transition: all 0.3s;
+  margin-top: 3rem;
+  box-shadow: -2px -2px 3px #d0cfcf;
+  background-color: #fff;
+  padding: 2rem;
 }
 
 .drawer-closed {
   transition: all 0.3s;
   transform: translateX(0);
+  margin: 3rem 1rem 0 1rem;
+  box-shadow: -2px -2px 3px #d0cfcf;
+  background-color: #fff;
+  min-width: 70%;
+  padding: 2rem;
+  height: 80vh;
+  /* overflow-y: hidden; */
+}
+
+.talent-container {
+  height: 80vh;
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 1rem 1rem 0.5rem;
+  width: 50rem;
+  height: 10rem;
+  background-color: #fff;
+  box-shadow: -1px -1px 5px #272626;
+}
+.cards-container {
+  margin: 2rem 1rem;
+}
+
+.card-talent {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  color: #666;
+  font-size: 2rem;
+  margin: 0.5rem 0 1rem 1rem;
+}
+
+.person-card h2 {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+}
+.person-card h6 {
+  color: #666;
+  font-size: 0.8rem;
+}
+.person-card h6 span {
+  color: #ff7500;
 }
