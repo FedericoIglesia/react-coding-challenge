@@ -8,6 +8,7 @@ import {
   filterByOpUnit,
   selectionBySkills,
 } from "../../redux/actions";
+import d from "../Drawer/Drawer.module.css";
 
 function Filter() {
   const data = useSelector((state) => state.talent);
@@ -15,7 +16,11 @@ function Filter() {
   const [lang, setLang] = useState("");
 
   const cities = [...new Set(data.map((c) => c.officeCity))].sort();
-  const grades = [...new Set(data.map((g) => g.bookingGrade))];
+  const grades = [
+    ...new Set(
+      data.map((g) => g.bookingGrade).filter((b) => b.bookingGrade !== "")
+    ),
+  ];
   const languages = [
     ...new Set(
       data.map((s) =>
@@ -50,7 +55,7 @@ function Filter() {
   }
 
   function handleSkillSelection(e) {
-    dispatch(selectionBySkills(e.target.value));
+    e.target.value == "coding" ? setLang("coding") : setLang("language");
   }
 
   function handleSkillsFilter(e) {
@@ -63,18 +68,22 @@ function Filter() {
 
   function handleOpUnitFilter(e) {
     dispatch(filterByOpUnit(e.target.value));
+    console.log(e.target.value);
   }
 
   return (
     <div>
       <h6>Office City</h6>
-      <select onChange={(e) => handleCityFilter(e)}>
+      <select
+        onChange={(e) => handleCityFilter(e)}
+        className={d["select-filters"]}
+      >
+        <option selected value="all">
+          All Cities
+        </option>
         {cities.map((city, idx) => {
           return (
             <>
-              <option selected value="all">
-                All Cities
-              </option>
               <option value={city.toLowerCase()} key={idx}>
                 {city}
               </option>
@@ -83,13 +92,16 @@ function Filter() {
         })}
       </select>
       <h6>Booking Grade</h6>
-      <select onChange={(e) => handleBookingFilter(e)}>
+      <select
+        onChange={(e) => handleBookingFilter(e)}
+        className={d["select-filters"]}
+      >
+        <option selected value="all">
+          All Booking Grades
+        </option>
         {grades.map((grade, idx) => {
           return (
             <>
-              <option selected value="all">
-                All Booking Grades
-              </option>
               <option value={grade.toLowerCase()} key={idx}>
                 {grade}
               </option>
@@ -97,24 +109,30 @@ function Filter() {
           );
         })}
       </select>
-      <h4>Skills</h4>
-      <div onChange={(e) => handleSkillSelection(e)}>
-        <label>
+      <h4 style={{ margin: "1.5rem 0 0.5rem 0.5rem" }}>Skills</h4>
+      <div
+        onChange={(e) => handleSkillSelection(e)}
+        style={{ display: "flex", flexDirection: "column" }}
+      >
+        <label className={d["label-filters"]}>
           Language
           <input type="radio" value="language" name="lang" />
         </label>
-        <label>
+        <label className={d["label-filters"]}>
           Coding Language
           <input type="radio" value="coding" name="lang" />
         </label>
-        <select onChange={(e) => handleSkillsFilter(e)}>
+        <select
+          onChange={(e) => handleSkillsFilter(e)}
+          className={d["select-filters"]}
+        >
+          <option selected value="all">
+            All
+          </option>
           {lang == "language"
-            ? languages.map((name, idx) => {
+            ? [...new Set(languages)].map((name, idx) => {
                 return (
                   <>
-                    <option selected value="all">
-                      All
-                    </option>
                     <option value={name.toLowerCase()} key={idx}>
                       {name}
                     </option>
@@ -124,9 +142,6 @@ function Filter() {
             : [...new Set(coding)].map((name, idx) => {
                 return (
                   <>
-                    <option selected value="all">
-                      All
-                    </option>
                     <option value={name.toLowerCase()} key={idx}>
                       {name}
                     </option>
@@ -136,13 +151,16 @@ function Filter() {
         </select>
       </div>
       <h6>Industry</h6>
-      <select onChange={(e) => handleIndustryFilter(e)}>
+      <select
+        onChange={(e) => handleIndustryFilter(e)}
+        className={d["select-filters"]}
+      >
+        <option selected value="all">
+          All Industries
+        </option>
         {industries.map((industry, idx) => {
           return (
             <>
-              <option selected value="all">
-                All Industries
-              </option>
               <option value={industry.toLowerCase()} key={idx}>
                 {industry}
               </option>
@@ -151,13 +169,16 @@ function Filter() {
         })}
       </select>
       <h6>Operating Unit</h6>
-      <select onChange={(e) => handleOpUnitFilter(e)}>
+      <select
+        onChange={(e) => handleOpUnitFilter(e)}
+        className={d["select-filters"]}
+      >
+        <option selected value="all">
+          All Operating Units
+        </option>
         {opUnits.map((opUnit, idx) => {
           return (
             <>
-              <option selected value="all">
-                All Operating Units
-              </option>
               <option value={opUnit.toLowerCase()} key={idx}>
                 {opUnit}
               </option>

@@ -9,6 +9,7 @@ import {
   FILTER_BY_SKILLS,
   FILTER_BY_OU,
   CURRENT_CITY,
+  CURRENT_INDUSTRY,
   CLEAN_SEARCH,
 } from "./actions";
 import Swal from "sweetalert2";
@@ -18,6 +19,7 @@ const initialState = {
   talentCopy: [],
   drawer: false,
   currentCity: [],
+  currentIndustry: [],
   person: [],
 };
 
@@ -45,6 +47,14 @@ function rootReducer(state = initialState, action) {
         currentCity: cityId,
       };
 
+    case CURRENT_INDUSTRY:
+      let industry = action.payload;
+      let indId = state.talent.filter((t) => t.industry == industry);
+      return {
+        ...state,
+        currentIndustry: indId,
+      };
+
     case SEARCH_TALENT:
       let name = action.payload;
       console.log(name);
@@ -67,52 +77,78 @@ function rootReducer(state = initialState, action) {
         person: search,
       };
 
-    // case CLEAN_SEARCH:
-    //   return {
-    //     ...state,
-    //     person: [],
-    //   };
-
-    case FILTER_BY_CITY:
+    case CLEAN_SEARCH:
       return {
         ...state,
-        talent: [],
+        person: [],
+      };
+
+    case FILTER_BY_CITY:
+      let cityFilter = action.payload;
+      let filteredCity = [];
+      if (cityFilter !== "all") {
+        filteredCity = state.talentCopy.filter(
+          (t) => t.officeCity.toLowerCase() == cityFilter.toLowerCase()
+        );
+      }
+      return {
+        ...state,
+        person: filteredCity,
       };
 
     case FILTER_BY_BOOKING:
+      let bgFilter = action.payload;
+      console.log(bgFilter);
+      let filteredBg = [];
+      if (bgFilter !== "all") {
+        filteredBg = state.talentCopy.filter(
+          (t) => t.bookingGrade.toLowerCase() == bgFilter.toLowerCase()
+        );
+      }
       return {
         ...state,
-        talent: [],
-      };
-
-    case FILTER_BY_INDUSTRY:
-      return {
-        ...state,
-        talent: [],
-      };
-
-    case SELECTION_BY_SKILLS:
-      return {
-        ...state,
-        talent: [],
+        person: filteredBg,
       };
 
     case FILTER_BY_SKILLS:
+      let lang = action.payload;
+      let filteredLang = [];
+      if (lang !== "all") {
+        filteredLang = state.talentCopy.filter((x) =>
+          x.requiredSkills.map((y) => y.name.toLowerCase()).includes(lang)
+        );
+      }
       return {
         ...state,
-        talent: [],
-      };
-
-    case FILTER_BY_OU:
-      return {
-        ...state,
-        talent: [],
+        person: filteredLang,
       };
 
     case FILTER_BY_INDUSTRY:
+      let indFilter = action.payload;
+      let filteredInd = [];
+      if (indFilter !== "all") {
+        filteredInd = state.talentCopy.filter(
+          (t) => t.industry.toLowerCase() == indFilter.toLowerCase()
+        );
+      }
+
       return {
         ...state,
-        talent: [],
+        person: filteredInd,
+      };
+
+    case FILTER_BY_OU:
+      let ouFilter = action.payload;
+      let filteredOu = [];
+      if (ouFilter !== "all") {
+        filteredOu = state.talentCopy.filter(
+          (t) => t.operatingUnit.toLowerCase() == ouFilter.toLowerCase()
+        );
+      }
+
+      return {
+        ...state,
+        person: filteredOu,
       };
 
     default:

@@ -11,6 +11,7 @@ export const FILTER_BY_SKILLS = "FILTER_BY_SKILLS";
 export const SELECTION_BY_SKILLS = "SELECTION_BY_SKILLS";
 export const FILTER_BY_OU = "FILTER_BY_OU";
 export const CURRENT_CITY = "CURRENT_CITY";
+export const CURRENT_INDUSTRY = "CURRENT_INDUSTRY";
 export const CLEAN_SEARCH = "CLEAN_SEARCH";
 
 export function getTalent() {
@@ -49,12 +50,18 @@ export function currentCity(payload) {
     payload,
   };
 }
+export function currentIndustry(payload) {
+  return {
+    type: CURRENT_INDUSTRY,
+    payload,
+  };
+}
 
-// export function cleanSearch() {
-//   return {
-//     type: CLEAN_SEARCH,
-//   };
-// }
+export function cleanSearch() {
+  return {
+    type: CLEAN_SEARCH,
+  };
+}
 
 export function filterByCity(payload) {
   return {

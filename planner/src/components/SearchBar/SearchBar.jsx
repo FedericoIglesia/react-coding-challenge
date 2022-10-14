@@ -36,12 +36,23 @@ function SearchBar() {
     setName("");
   }
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={(e) => handleSubmit(e)} style={{ overflowX: "hidden" }}>
       <input
         type="text"
-        placeholder="Look for talent by name or ID"
+        placeholder="Look for talent by name or ID..."
         onChange={(e) => handleInput(e)}
         value={name}
+        style={{
+          margin: "3rem 1rem",
+          width: "90%",
+          transform: "translateX(-0.5rem)",
+          height: "2rem",
+          border: "1px solid #ff7500",
+          borderRadius: "3px",
+          paddingLeft: "5px",
+          fontSize: "0.9rem",
+          outline: "none",
+        }}
       />
     </form>
   );

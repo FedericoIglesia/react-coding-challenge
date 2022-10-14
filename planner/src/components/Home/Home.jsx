@@ -3,16 +3,12 @@ import Drawer from "../Drawer/Drawer";
 import Header from "../Header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  currentCity,
-  filterBySkills,
-  getTalent,
   cleanSearch,
+  currentCity,
+  currentIndustry,
+  getTalent,
 } from "../../redux/actions";
 import h from "./Home.module.css";
-import City from "../Card/City";
-import Industry from "../Card/Industry";
-import Skills from "../Card/Skills";
-import Pagination from "../Pagination/Pagination";
 import { useHistory } from "react-router-dom";
 
 function Home() {
@@ -55,12 +51,17 @@ function Home() {
 
   function handleCityClick(name) {
     dispatch(currentCity(name));
-    console.log(name);
     history.push("/city");
   }
 
+  function handleIndustryClick(name) {
+    dispatch(currentIndustry(name));
+    console.log(name);
+    history.push("/industry");
+  }
+
   function handleReset() {
-    history.push("/home");
+    dispatch(cleanSearch());
   }
 
   return (
@@ -68,7 +69,8 @@ function Home() {
       <div>
         {drawer && (
           <button
-            onClick={handleReset()}
+            className={h["reset-btn"]}
+            onClick={handleReset}
             style={{
               position: "absolute",
               top: "4rem",
@@ -102,7 +104,7 @@ function Home() {
                       backgroundColor: "#fff",
                       color: "#666",
                       boxShadow: "-1px -1px 5px #272626",
-                      height: "10rem",
+                      height: "12rem",
                     }}
                     className={h["person-card"]}
                   >
@@ -154,35 +156,6 @@ function Home() {
                   );
                 })}
               </div>
-              {/* <h2>Skill</h2>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                overflowX: "scroll",
-              }}
-              className={h["cards-container"]}
-            >
-              {[...new Set(skills)].map((c) => {
-                return (
-                  <>
-                    <h2>{c}</h2>
-                    <div className={h.cards}>
-                      <h4>
-                        Talent available:{" "}
-                        {
-                          talent.filter(
-                            (t) =>
-                              t.requiredSkills.map((n) => n.name == c) &&
-                              t.talentName !== ""
-                          ).length
-                        }
-                      </h4>
-                    </div>
-                  </>
-                );
-              })}
-            </div> */}
               <h2>Industry</h2>
               <div
                 style={{
@@ -194,7 +167,10 @@ function Home() {
               >
                 {industries.map((c) => {
                   return (
-                    <div className={h.cards}>
+                    <div
+                      className={h.cards}
+                      onClick={() => handleIndustryClick(c)}
+                    >
                       <h3 className={h["card-title"]}>{c}</h3>
                       <div style={{ width: "20rem" }}>
                         <h4 className={h["card-talent"]}>

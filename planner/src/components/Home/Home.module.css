@@ -2,7 +2,7 @@
   transform: translateX(17rem);
   position: absolute;
   top: 3.5rem;
-  max-width: 80%;
+  max-width: 77%;
   min-width: 75%;
   height: 80vh;
   transition: all 0.3s;
@@ -10,6 +10,7 @@
   box-shadow: -2px -2px 3px #d0cfcf;
   background-color: #fff;
   padding: 2rem;
+  overflow-x: hidden;
 }
 
 .drawer-closed {
@@ -24,6 +25,9 @@
   /* overflow-y: hidden; */
 }
 
+.reset-btn:hover {
+  cursor: pointer;
+}
 .talent-container {
   height: 80vh;
 }
@@ -35,6 +39,10 @@
   height: 10rem;
   background-color: #fff;
   box-shadow: -1px -1px 5px #272626;
+}
+
+.cards:hover {
+  cursor: pointer;
 }
 .cards-container {
   margin: 2rem 1rem;
